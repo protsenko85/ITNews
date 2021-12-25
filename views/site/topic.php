@@ -1,8 +1,7 @@
 <?php
 
+use yii\bootstrap4\LinkPager;
 use yii\helpers\Url;
-
-use yii\widgets\LinkPager;
 
 ?>
 

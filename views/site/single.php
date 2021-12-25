@@ -284,7 +284,7 @@ use yii\helpers\Url;
 </div>
 
 <?= Url::toRoute(['/topic', 'id' => $article->topic->id]) ?>
-<?php echo \Yii::$app->view->renderFile('@app/views/site/right.php');?>
+<?php echo \Yii::$app->view->renderFile('@app/views/site/right.php', compact('popular','recent','topics'));?>
 
 <script>
 
