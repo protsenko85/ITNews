@@ -29,6 +29,7 @@ a {
 .post-thumb img {
     width: 100%;
 }
+
 .post-thumb {
     position: relative;
     display: -webkit-box;
@@ -45,35 +46,43 @@ a {
     -ms-flex-direction: column;
     flex-direction: column;
 }
+
 .entry-header {
     margin: 40px 0 23px;
 }
+
 .entry-header h1 {
     margin-top: 0;
     font-size: 24px;
 }
+
 span, p, input {
     font-family: 'Merriweather', serif;
     line-height: 26px;
 }
+
 .post .social-share {
     border-top: 1px solid #EEE;
     padding: 15px 0 75px;
 }
+
 .social-share-title {
     padding: 9px 0;
     font-style: italic;
     font-size: 13px;
 }
+
 .pagination {
     display: inline-block;
     padding-left: 0;
     margin: 0 0 50px;
     border-radius: 4px;
 }
+
 .entry-header h1 a:hover {
     color: #00acdf;
 }
+
 .entry-header h1 a {
     font-weight: 600;
     color: #333333;
@@ -82,10 +91,12 @@ span, p, input {
     font-size: 24px;
     line-height: 34px;
 }
+
 .social-share ul li {
     list-style: none;
     display: inline-block;
 }
+
 .social-share ul li a i {
     height: 30px;
     width: 30px;
@@ -98,9 +109,11 @@ span, p, input {
     transition: all 0.4s;
     color: #C2C2C2;
 }
+
 .social-share span a {
     color: #333;
 }
+
 .pagination > li > a, .pagination > li > span {
     position: relative;
     float: left;
@@ -115,50 +128,89 @@ span, p, input {
     transition: all 0.3s;
     font-weight: 600;
 }
+
 widget ul {
-
     margin: 0;
-
     padding: 0;
-
     list-style: none;
-
 }
 
+.search-form {
+    height: 90px;
+}
+
+.form-group.field-searchform-text.required {
+    font-size: 17px;
+    float: left;
+    width: 80%;
+}
+
+.btn-serch {
+    float: left;
+    width: 20%;
+    padding: 4px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+.btn-serch:hover {
+    background: #0b7dda;
+}
+
+
 .widget.border ul li:first-child {
-
     padding-top: 0;
+}
 
+.post-list .post-content {
+    padding: 0 20px 0 0;
+    overflow: hidden;
+}
+
+.post-list .entry-header {
+    margin: 22px 0;
+}
+
+.entry-header h6 a {
+    color: #00acdf;
+    font-weight: 700;
+    font-size: 10px;
+}
+
+.entry-header h1 a, .entry-header h6 a {
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.post-grid .entry-header h1, .post-list .entry-header h1 {
+    margin: 0;
+    line-height: 24px;
+}
+
+.post-grid .entry-header h1 a, .post-list .entry-header h1 a {
+    font-size: 18px;
+    line-height: 24px;
 }
 
 .widget.border ul li {
-
     border-bottom: 1px solid #eeeeee;
-
     padding: 6px 0 6px 12px;
-
     position: relative;
-
 }
 
 .widget ul li a {
-
     line-height: 26px;
-
     font-size: 12px;
-
     font-weight: 500;
-
     color: #323232;
-
     text-decoration: none;
-
     text-transform: uppercase;
-
     font-family: 'Merriweather', serif;
-
     transition: all 0.33s;
-
 }
 
 .widget {

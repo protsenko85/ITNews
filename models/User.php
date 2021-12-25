@@ -47,6 +47,16 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return 'user';
     }
 
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
+    }
+
+    public function create()
+    {
+        return $this->save(false);
+    }
+
     public static function findByUsername($username)
     {
         return User::find()->where(['login'=>$username])->one();

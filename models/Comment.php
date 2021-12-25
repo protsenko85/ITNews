@@ -45,6 +45,11 @@ class Comment extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
+    }
+
     /**
      * {@inheritdoc}
      */
