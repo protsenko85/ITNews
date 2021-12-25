@@ -69,3 +69,9 @@ $this->title = 'My Yii Application';
     </ul>
 
 </div>
+
+<?php
+
+echo \Yii::$app->view->renderFile('@app/views/site/right.php');
+
+?>
