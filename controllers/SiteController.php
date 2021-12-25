@@ -11,6 +11,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Article;
 use yii\data\Pagination;
+use app\models\Topic;
 
 class SiteController extends Controller
 {
@@ -40,8 +41,28 @@ class SiteController extends Controller
         ];
     }
 
-    public function actionView()
+    public function actionView($id)
     {
+        $article = Article::findOne($id);
+
+        $popular = Article::find()->orderBy('viewed desc')->limit(3)->all();
+
+        $recent = Article::find()->orderBy('date desc')->limit(3)->all();
+
+        $topics = Topic::find()->all();
+
+        return $this->render('single', [
+
+            'article' => $article,
+
+            'popular' => $popular,
+
+            'recent' => $recent,
+
+            'topics' => $topics,
+
+        ]);
+
         return $this->render('single');
     }
 
@@ -90,47 +111,23 @@ class SiteController extends Controller
 
             ->all();
 
+        $popular = Article::find()->orderBy('viewed desc')->limit(3)->all();
+        $recent = Article::find()->orderBy('date desc')->limit(3)->all();
+        $topics = Topic::find()->all();
+
         return $this->render('index',[
 
             'articles'=>$articles,
 
-            'pagination'=>$pagination
+            'pagination'=>$pagination,
+
+            'popular' => $popular,
+
+            'recent' => $recent,
+
+            'topics' => $topics
 
         ]);
-
-    }
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
     }
 
     /**

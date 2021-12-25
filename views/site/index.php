@@ -70,8 +70,5 @@
 
 </div>
 
-<?php
-
-echo \Yii::$app->view->renderFile('@app/views/site/right.php');
-
-?>
+<?= Url::toRoute(['/topic', 'id' => $article->topic->id]) ?>
+<?php echo \Yii::$app->view->renderFile('@app/views/site/right.php', compact('popular','recent','topics'));?>
