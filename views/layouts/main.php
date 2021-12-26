@@ -22,14 +22,69 @@ AppAsset::register($this);
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
 </head>
-<body class="d-flex flex-column h-100">
+<body>
 <?php $this->beginBody() ?>
 
-<?php
+<div class="wrap">
+    <?php
+    NavBar::begin([
+        'brandLabel' => 'ITNews',
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => [
+            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+        ],
+    ]);
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items' => [
+            '<li>'
+            .Html::beginForm(['/site/index'], 'get')
+            . Html::submitButton(
+                'Home',
+                ['class' => 'btn btn-link nav-button']
+            )
+            . Html::endForm()
+            .'<li>',
+            Yii::$app->user->isGuest ? (
+                '<li>'
+                .Html::beginForm(['/auth/login'], 'get')
+                . Html::submitButton(
+                    'Login',
+                    ['class' => 'btn btn-link nav-button']
+                )
+                . Html::endForm()
+                .'<li>'
+            ) :
+                '<li>'
+                . Html::beginForm(['/user/user'], 'post')
+                . Html::submitButton(
+                    'User',
+                    ['class' => 'btn btn-link nav-button']
+                )
+                . Html::endForm()
+                . '<li>'
+                . Html::beginForm(['/user/article'], 'post')
+                . Html::submitButton(
+                    'Article',
+                    ['class' => 'btn btn-link nav-button']
+                )
+                . Html::endForm()
+                . '</li>'
+                . '<li>'
+                . Html::beginForm(['/auth/logout'], 'post')
+                . Html::submitButton(
+                    'Logout (' . Yii::$app->user->identity->name . ')',
+                    ['class' => 'btn btn-link logout']
+                )
+                . Html::endForm()
+                . '</li>'
 
-NavBar::begin();
-
-?>
+        ],
+    ]);
+    ?>
+    <?php
+    NavBar::end();
+    ?>
 
 <div class="container">
 
@@ -39,11 +94,9 @@ NavBar::begin();
 
         <div class="container">
 
-            <div class="row">
 
                 <?= $content ?>
 
-            </div>
 
         </div>
 

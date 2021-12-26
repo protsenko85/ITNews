@@ -1,20 +1,14 @@
 <div class="col-md-8">
-    <?php use yii\helpers\Url;
 
-    foreach ($articles as $article): ?>
-        <article class = "post"...>
-    <?php endforeach;
-    echo \yii\widgets\LinkPager::widget([
-            "pagination" => $pagination,
-    ])
-    ?>
-</div>
+<?php use yii\helpers\Url;
+use yii\widgets\LinkPager;
 
+foreach ($articles as $article): ?>
     <article class="post">
 
         <div class="post-thumb">
 
-            <a href=""><img class="img-index" src="<?= $article->getImage() ?> " alt="Image"></a>
+            <a href="<?= Url::toRoute(['/view', 'id'=>$article->id]) ?>"><img class="img-index" src="<?= $article->getImage()  ?>" alt=""></a>
 
         </div>
 
@@ -22,53 +16,45 @@
 
             <header class="entry-header text-center text-uppercase">
 
-                <a href=""> <?= $article->topic->name; ?></a>
+                <h6><a href="<?= Url::toRoute(['/topic', 'id'=>$article->topic->id]) ?>"> <?= $article->topic->name;  ?></a></h6>
 
-                <a href=""> <?= $article->title; ?> </a>
+                <h1 class="entry-title"><a href="<?= Url::toRoute(['/view', 'id'=>$article->id]) ?>"><?= $article->title;  ?></a></h1>
+
 
             </header>
 
             <div class="entry-content">
 
-                <p> <?= mb_strimwidth($article->description,0, 360, "..."); ?> </p>
+                <p> <?= mb_strimwidth($article->description, 0, 360, "..."); ?> </p>
 
                 <div class="btn-continue-reading text-center text-uppercase">
 
-                    <a href="<?= Url::toRoute(['/view', 'id'=>$article->id]) ?>" class="more-link">Continue Reading</a>
+                    <a href="<?= Url::toRoute(['/view', 'id' => $article->id]) ?>" class="more-link">Continue
+                        Reading</a>
 
                 </div>
 
             </div>
-
             <div class="social-share">
-
-                <span class="social-share-title pull-left text-capitalize">By <?= $article->user->name;?> On <?= $article->getDate();?></span>
-
+                <span class="social-share-title pull-left text-capitalize">By <?= $article->user->name;  ?> On <?= $article->getDate();  ?></span>
                 <ul class="text-center pull-right">
-
                     <li><a class="s-facebook" href="#"><i class="fa fa-eye"></i></a></li>
-
-                    <?= (int)$article->viewed; ?>
-
+                    <?= (int)$article->viewed;  ?>
                 </ul>
-
             </div>
 
         </div>
 
     </article>
+<?php endforeach; ?>
+<?php
 
-    <ul class="pagination">
-
-        <li class="active"><a href="#">1</a></li>
-
-        <li><a href="#">2</a></li>
-
-        <li><a href="#">3</a></li>
-
-    </ul>
+echo LinkPager::widget([
+    'pagination' => $pagination,
+]);
+?>
 
 </div>
 
-<?= Url::toRoute(['/topic', 'id' => $article->topic->id]) ?>
-<?php echo \Yii::$app->view->renderFile('@app/views/site/right.php', compact('popular','recent','topics'));?>
+
+<?php echo Yii::$app->view->renderFile('@app/views/site/right.php', compact('popular', 'recent', 'topics')); ?>

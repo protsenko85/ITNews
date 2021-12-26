@@ -5,6 +5,7 @@ namespace app\modules\user\controllers;
 use app\models\Article;
 use app\models\ArticleSearch;
 use app\models\ImageUpload;
+use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -79,7 +80,6 @@ class ArticleController extends Controller
         {
             $article = $this->findModel($id);
             $file = UploadedFile::getInstance($model, 'image');
-            $article->saveImage($model->uploadFile($file, $article->image));
             if ($article->saveImage($model->uploadFile($file, $article->image)))
             {
                 return $this->redirect(['view', 'id'=>$article->id]);
@@ -98,7 +98,7 @@ class ArticleController extends Controller
         $model = new Article();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load($this->request->post()) && $model->saveArticle()) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {
@@ -122,7 +122,7 @@ class ArticleController extends Controller
         $this->check($id);
         $model = $this->findModel($id);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->saveArticle()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

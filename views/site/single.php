@@ -9,7 +9,7 @@ use yii\helpers\Url;
 
         <div class="post-thumb">
 
-            <a href="blog.html"><img src="" alt=" image "></a>
+            <a href="blog.html"><img src="<?= $article->getImage() ?>" alt=""></a>
 
         </div>
 
@@ -21,23 +21,18 @@ use yii\helpers\Url;
                     <a href="<?= Url::toRoute(['/topic', 'id' => $article->topic->id]) ?>"> <?= $article->topic->name; ?></a>
                 </h6>
 
-                <a href="# <a href="blog.html"><?= $article->title; ?></a> "><?= $article->title; ?></a>
+                <h1 class="entry-title"><?= $article->title; ?></h1>
 
             </header>
 
             <div class="entry-content">
-
-                Text.
-
+                <?= $article->description; ?>
             </div>
-
             <div class="decoration">
-
                 <?php foreach (preg_split("/[\s,]+/", $article->tag) as $tag): ?>
                     <a href="/search?SearchForm[text]=<?= str_replace('#', '', $tag) ?>"
                        class="btn btn-default"><?= $tag ?></a>
                 <?php endforeach; ?>
-
             </div>
 
             <div class="social-share">
@@ -283,7 +278,6 @@ use yii\helpers\Url;
 
 </div>
 
-<?= Url::toRoute(['/topic', 'id' => $article->topic->id]) ?>
 <?php echo \Yii::$app->view->renderFile('@app/views/site/right.php', compact('popular','recent','topics'));?>
 
 <script>

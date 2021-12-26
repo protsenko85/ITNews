@@ -13,17 +13,11 @@ class m211225_083808_create_topic_table extends Migration
      */
 
     public function safeUp()
-
     {
-
         $this->createTable('{{%topic}}', [
-
             'id' => $this->primaryKey(),
-
             'name' => $this->string(),
-
         ]);
-
     }
 
     /**
@@ -31,11 +25,8 @@ class m211225_083808_create_topic_table extends Migration
      */
 
     public function safeDown()
-
     {
-
         $this->dropTable('{{%topic}}');
-
     }
 
 }
